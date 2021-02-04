@@ -18,7 +18,6 @@ function App() {
       const response = await axios.get(
         `https://finnhub.io/api/v1/company-news?symbol=${stockSymbol}&from=2021-01-01&to=2021-02-01&token=c0cbl3v48v6u6kubncb0`
       );
-      console.log("url news", response);
 
       if (!didCancel) {
         setNewsData(response.data);
@@ -39,7 +38,6 @@ function App() {
       const response = await axios.get(
         `https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=c0cbl3v48v6u6kubncb0`
       );
-      console.log("url stock", response);
       if (!didCancel) {
         setStockData({
           openPrice: response.data.o,
@@ -63,9 +61,8 @@ function App() {
   }) {
     setStockSymbol(event.target.value);
   }
-  console.log(stockData);
   return (
-    <div className="bg-gray-800 py-20 px-10">
+    <div className="bg-gray-800 py-20 px-10 lg:h-screen">
       <div className="flex flex-wrap max-w-6xl mx-auto">
         <div className="w-full md:w-2/3 lg:pr-10 md:pr-5">
           {isLoading ? (
@@ -99,7 +96,7 @@ function App() {
               placeholder="ex: AAPL"
             />
           </form>
-          <div className="text-gray-400">
+          <div className="text-gray-400 mb-10">
             <span className="block uppercase tracking-wide text-gray-400 text-sm font-bold mb-2">
               Suggested Searches
             </span>

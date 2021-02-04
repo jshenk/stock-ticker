@@ -29,7 +29,7 @@ function Stock(props: Quote) {
           {precentIncrease.toFixed(2)}%
         </span>
       </div>
-      <div className="grid grid-cols-3 gap-4 text-center">
+      <div className="grid md:grid-cols-3 gap-4 text-center">
         <div className="bg-gray-600 p-5 rounded shadow">
           <span className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2">
             Open
