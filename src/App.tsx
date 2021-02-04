@@ -72,9 +72,9 @@ function App() {
       </div>
 
       <div className="max-w-6xl mx-auto lg:grid lg:grid-cols-3 lg:gap-10">
-        {newsData.slice(0, 3).map((item) => (
+        {newsData.slice(0, 3).map((item, index) => (
           <NewsCard
-            key={item.id}
+            key={index}
             headline={item.headline}
             url={item.url}
             date={item.datetime}
