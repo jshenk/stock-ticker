@@ -16,7 +16,9 @@ function Stock(props: Quote) {
     <div className="bg-gray-700 mb-10 p-5 rounded shadow text-center text-gray-100">
       <div className="mb-10">
         <div>{props.symbol}</div>
-        <div className="text-3xl font-bold">${props.currentPrice}</div>
+        <div className="text-3xl font-bold">
+          ${props.currentPrice.toFixed(2)}
+        </div>
         <span
           className={
             props.currentPrice > props.previousClose

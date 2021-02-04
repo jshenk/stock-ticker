@@ -1,15 +1,15 @@
 import React from "react";
 import moment from "moment";
 
-interface NewsCardProps {
+export interface News {
   headline: string;
   summary: string;
   url: string;
-  date: number;
+  datetime: number;
 }
 
-function NewsCard(props: NewsCardProps) {
-  const date = moment.unix(props.date).format("ll");
+function NewsCard(props: News) {
+  const date = moment.unix(props.datetime).format("ll");
 
   return (
     <div className="bg-gray-900 rounded shadow p-5 text-gray-100 flex flex-col items-start mb-4">
