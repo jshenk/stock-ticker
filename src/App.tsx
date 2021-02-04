@@ -8,11 +8,13 @@ function App() {
   const [stockData, setStockData] = useState<Quote>();
   const [stockSymbol, setStockSymbol] = useState("GME");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingNews, setIsLoadingNews] = useState(false);
 
   useEffect(() => {
     let didCancel = false;
 
     const fetchData = async () => {
+      setIsLoadingNews(true);
       const response = await axios.get(
         `https://finnhub.io/api/v1/company-news?symbol=${stockSymbol}&from=2021-01-01&to=2021-02-01&token=c0cbl3v48v6u6kubncb0`
       );
@@ -21,6 +23,7 @@ function App() {
       if (!didCancel) {
         setNewsData(response.data);
       }
+      setIsLoadingNews(false);
     };
     fetchData();
     return () => {
@@ -66,7 +69,9 @@ function App() {
       <div className="flex flex-wrap max-w-6xl mx-auto">
         <div className="w-full md:w-2/3 lg:pr-10 md:pr-5">
           {isLoading ? (
-            <div>Loading ...</div>
+            <div className="bg-gray-700 mb-10 p-5 rounded shadow text-center text-gray-100">
+              Loading ...
+            </div>
           ) : (
             stockData && (
               <Stock
@@ -109,15 +114,23 @@ function App() {
       </div>
 
       <div className="max-w-6xl mx-auto lg:grid lg:grid-cols-3 lg:gap-10">
-        {newsData.slice(0, 3).map((item, index) => (
-          <NewsCard
-            key={index}
-            headline={item.headline}
-            url={item.url}
-            datetime={item.datetime}
-            summary={item.summary}
-          />
-        ))}
+        {isLoadingNews ? (
+          <div className="bg-gray-900 rounded shadow p-5 text-gray-100">
+            Loading ...
+          </div>
+        ) : (
+          newsData
+            .slice(0, 3)
+            .map((item, index) => (
+              <NewsCard
+                key={index}
+                headline={item.headline}
+                url={item.url}
+                datetime={item.datetime}
+                summary={item.summary}
+              />
+            ))
+        )}
       </div>
     </div>
   );
