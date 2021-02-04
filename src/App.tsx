@@ -56,10 +56,8 @@ function App() {
     };
   }, [stockSymbol]);
 
-  function handleChange(event: {
-    target: { value: React.SetStateAction<string> };
-  }) {
-    setStockSymbol(event.target.value);
+  function handleChange(event: { target: { value: string } }) {
+    setStockSymbol(event.target.value.toUpperCase());
   }
   return (
     <div className="bg-gray-800 py-20 px-10 lg:h-screen">
