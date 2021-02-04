@@ -40,7 +40,7 @@ function App() {
     setStockSymbol(event.target.value);
   }
   return (
-    <div className="bg-gray-800 py-20 px-10 lg:h-screen">
+    <div className="bg-gray-800 py-20 px-10">
       <div className="flex flex-wrap max-w-6xl mx-auto">
         <div className="w-full md:w-2/3 lg:pr-10 md:pr-5">
           {stockData && (
