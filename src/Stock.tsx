@@ -11,7 +11,8 @@ export interface Quote {
 
 function Stock(props: Quote) {
   const increase = props.currentPrice - props.previousClose;
-  const precentIncrease = (increase / props.previousClose) * 100;
+  const precentIncrease =
+    props.currentPrice > 0 ? (increase / props.previousClose) * 100 : 0;
   return (
     <div className="bg-gray-700 mb-10 p-5 rounded shadow text-center text-gray-100">
       <div className="mb-10">
