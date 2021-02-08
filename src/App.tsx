@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NewsCard, { News } from "./NewsCard";
 import Stock, { Quote } from "./Stock";
+import moment from "moment";
 
 function App() {
   const [newsData, setNewsData] = useState<News[]>([]);
@@ -12,11 +13,13 @@ function App() {
 
   useEffect(() => {
     let didCancel = false;
+    const currentDate = moment().format("YYYY-MM-DD");
+    const startDate = moment().subtract(3, "days").format("YYYY-MM-DD");
 
     const fetchData = async () => {
       setIsLoadingNews(true);
       const response = await axios.get(
-        `https://finnhub.io/api/v1/company-news?symbol=${stockSymbol}&from=2021-01-01&to=2021-02-01&token=c0cbl3v48v6u6kubncb0`
+        `https://finnhub.io/api/v1/company-news?symbol=${stockSymbol}&from=${startDate}&to=${currentDate}&token=c0cbl3v48v6u6kubncb0`
       );
 
       if (!didCancel) {
